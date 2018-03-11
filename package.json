@@ -4,7 +4,7 @@
   "description": "Duty project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --config webpack.dev.js",
     "lint": "standard"
   },
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Ouraborus/duty#readme",
   "dependencies": {
+    "material-ui": "^1.0.0-beta.37",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
