@@ -108,10 +108,6 @@ export default class NavBar extends Component {
               <a className='mdl-navigation__link' href=''>Link</a>
             </nav>
           </div>
-          <main className='mdl-layout__content'>
-            <div className='page-content'>Holi
-            </div>
-          </main>
         </div>
       </Fragment>
     )
