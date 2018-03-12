@@ -1,11 +1,12 @@
 import React, {Fragment} from 'react'
-import MenuAppBar from './components/AppBar/AppBar'
-import './scss/main.scss'
+import AppBar from './components/AppBar/AppBar'
+import './scss/reset.scss'
+import './scss/fonts.scss'
 
 export default function App () {
   return (
     <Fragment>
-      <MenuAppBar />
+      <AppBar />
     </Fragment>
   )
 }
