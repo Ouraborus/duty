@@ -1,12 +1,12 @@
 import React, {Fragment} from 'react'
-import AppBar from './components/AppBar/AppBar'
-import './scss/reset.scss'
-import './scss/fonts.scss'
+import NavBar from './components/NavBar/NavBar'
+import './scss/_reset.scss'
+import './scss/_fonts.scss'
 
 export default function App () {
   return (
     <Fragment>
-      <AppBar />
+      <NavBar />
     </Fragment>
   )
 }
