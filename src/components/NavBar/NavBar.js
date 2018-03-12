@@ -90,28 +90,16 @@ export default class NavBar extends Component {
           <header className='mdl-layout__header'>
             <div className='mdl-layout__header-row'>
               <span className='mdl-layout-title'>Duty</span>
-              <div className='mdl-layout-spacer' />
-              <nav className='mdl-navigation mdl-layout--large-screen-only'>
-                <a className='mdl-navigation__link' href=''>Link</a>
-                <a className='mdl-navigation__link' href=''>Link</a>
-                <a className='mdl-navigation__link' href=''>Link</a>
-                <a className='mdl-navigation__link' href=''>Link</a>
-              </nav>
             </div>
           </header>
           <div className='mdl-layout__drawer'>
-            <span className='mdl-layout-title'>Title</span>
+            <span className='mdl-layout-title'>Duty</span>
             <nav className='mdl-navigation'>
-              <a className='mdl-navigation__link' href=''>Link</a>
-              <a className='mdl-navigation__link' href=''>Link</a>
-              <a className='mdl-navigation__link' href=''>Link</a>
-              <a className='mdl-navigation__link' href=''>Link</a>
+              <a className='mdl-navigation__link' href=''>Dashboard</a>
+              <a className='mdl-navigation__link' href=''>Contacto</a>
+              <a className='mdl-navigation__link' href=''>Acerca</a>
             </nav>
           </div>
-          <main className='mdl-layout__content'>
-            <div className='page-content'>Holi
-            </div>
-          </main>
         </div>
       </Fragment>
     )
