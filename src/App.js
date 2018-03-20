@@ -10,7 +10,10 @@ export default function App () {
     <Fragment>
       <div className='app-container'>
         <NavBar />
-        <Card />
+        <div className='grid'>
+          <Card />
+          <Card />
+        </div>
       </div>
     </Fragment>
   )

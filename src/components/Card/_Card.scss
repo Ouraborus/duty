@@ -32,3 +32,9 @@
 	width: 100%;
 	height: auto;
 }
+.mdl-card__supporting-text{
+	height: 50px;
+	&--active{
+		height: auto;
+	}
+}
