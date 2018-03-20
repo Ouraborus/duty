@@ -1,5 +1,12 @@
 .mdl-layout__container{
+	position: absolute;
+}
+.mdl-layout__header{
 	position: fixed;
 	top: 0;
 	left: 0;
+}
+
+.is-visible{
+	position: fixed;
 }

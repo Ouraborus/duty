@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react'
 
 import './_login.scss'
+<<<<<<< HEAD
 import '../../scss/_icon.scss'
+=======
+>>>>>>> dev
 
 export default class Login extends Component {
   render () {
