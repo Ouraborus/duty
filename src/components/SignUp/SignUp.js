@@ -14,6 +14,7 @@ export default class SignUp extends Component {
             <input className='signup__form-input' placeholder='Nombres' type='text' required />
             <input className='signup__form-input' placeholder='Apellidos' type='text' required />
             <input className='signup__form-input' placeholder='Edad' type='number' required />
+            <input className='signup__form-input' placeholder='Lugar de trabajo' type='text' required />
             <button className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login__form-button'>
                 Registrarse
             </button>
