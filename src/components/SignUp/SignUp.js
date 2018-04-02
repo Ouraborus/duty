@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-
+import { Link } from 'react-router-dom'
 import './_SignUp.scss'
 
 export default class SignUp extends Component {
@@ -14,9 +14,11 @@ export default class SignUp extends Component {
             <input className='signup__form-input' placeholder='Nombres' type='text' required />
             <input className='signup__form-input' placeholder='Apellidos' type='text' required />
             <input className='signup__form-input' placeholder='Edad' type='number' required />
-            <button className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login__form-button'>
+            <input className='signup__form-input' placeholder='Lugar de trabajo' type='text' required />
+            {/* <button className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login__form-button'>
                 Registrarse
-            </button>
+            </button> */}
+            <div> <Link to='/dashboard'> Entrar </Link> </div>
           </section>
         </div>
       </Fragment>
