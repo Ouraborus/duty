@@ -10,8 +10,10 @@ export default function App () {
   return (
     <Router>
       <Fragment>
-        <Route exact path='/' render={() => <Login />} />
-        <Route exact path='/registrarse' render={() => <SignUp />} />
+        {/* <Route exact path='/' render={() => <Login />} />
+        <Route exact path='/registrarse' render={() => <SignUp />} /> */}
+        <Route exact path='/' component={() => <Login />} />
+        <Route exact path='/registrarse' component={() => <SignUp />} />
       </Fragment>
     </Router>
   )
