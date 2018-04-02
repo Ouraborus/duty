@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import NavBar from '../NavBar/NavBar'
 import { Link } from 'react-router-dom'
 import './_SignUp.scss'
 
@@ -7,7 +6,6 @@ export default class SignUp extends Component {
   render () {
     return (
       <Fragment>
-        <NavBar />
         <div className='signup'>
           <div className='signup__image-container' />
           <section className='signup__form'>

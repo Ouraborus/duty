@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import NavBar from '../NavBar/NavBar'
 import './_login.scss'
 import '../../scss/_icon.scss'
 
@@ -8,7 +7,6 @@ export default class Login extends Component {
   render () {
     return (
       <Fragment>
-        <NavBar />
         <div className='login'>
           <div className='login__image-container' />
           <section className='login__form'>
