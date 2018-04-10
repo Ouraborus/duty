@@ -7,6 +7,10 @@ export default function Dashboard () {
       <div className='grid'>
         <Card />
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </div>
   )
