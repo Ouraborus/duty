@@ -14,13 +14,13 @@ export default class Login extends Component {
             <input className='login__form-input' placeholder='Password' type='password' required />
             {/* <button className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login__form-button'>
             </button> */}
-            <div>
-              <Link to='/dashboard'>Entrar</Link>
+            <div className='login__button'>
+              <Link to='/dashboard' className='login__button-text'>Entrar</Link>
             </div>
             {/* <button className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login__form-button'>
               </button> */}
             <div>
-              <Link to='/registrarse'>Registrarse</Link>
+              <Link to='/registrarse'>¿No estás registrado aún?</Link>
             </div>
             <div className='login__social-media'>
               <button className='login__icons'>

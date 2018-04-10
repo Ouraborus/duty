@@ -18,7 +18,9 @@ export default class SignUp extends Component {
             {/* <button className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login__form-button'>
                 Registrarse
             </button> */}
-            <div> <Link to='/dashboard'> Entrar </Link> </div>
+            <div className='signup__button'>
+              <Link to='/dashboard'> Entrar </Link>
+            </div>
           </section>
         </div>
       </Fragment>
