@@ -10,26 +10,25 @@ export class Firebase {
       storageBucket: 'duty-94b1f.appspot.com',
       messagingSenderId: '620893240339'
     }
-    firebase.initializeApp(this.config)
+    this.firebase = firebase.initializeApp(this.config)
   }
   loginUtils (user, pass) {
-    firebase.auth().signInWithEmailAndPassword(user, pass).catch(function (error) {
-      const errorCode = error.code
+    this.firebase.auth().signInWithEmailAndPassword(user, pass).catch(function (error) {
       const errorMessage = error.message
-      console.log(errorCode, errorMessage)
+      console.log(errorMessage)
     })
   }
 
-  checkUserStatus () {
-    console.log('por favor hijueputa')
-    this.value = firebase.auth().onAuthStateChanged(function (user) {
+  async checkUserStatus () {
+    var b
+    await this.firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        return true
+        b = true
       } else {
-        return false
+        b = false
       }
     })
-    console.log(this.value)
+    return b
   }
 }
 

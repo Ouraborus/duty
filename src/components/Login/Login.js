@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Route, Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 import { Firebase } from '../../firebase/Firebase'
 import './_login.scss'
 import '../../scss/_icon.scss'
@@ -17,10 +17,10 @@ export default class Login extends Component {
 
   handleLogin () {
     this.firebase.loginUtils(this.user.value, this.pass.value)
-    this.firebase.checkUserStatus()
-    // console.log(this.approved)
+    const approved = this.firebase.checkUserStatus()
+    console.log(approved)
     this.setState(() => {
-      return {redirect: this.approved}
+      return { redirect: approved }
     })
   }
 
