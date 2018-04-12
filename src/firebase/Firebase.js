@@ -2,7 +2,6 @@ import firebase from 'firebase'
 
 export default class Firebase {
   static init (conf) {
-    console.log(conf)
     this.firebase = firebase.initializeApp(conf)
   }
 
@@ -28,25 +27,14 @@ export default class Firebase {
       console.log(error)
     })
   }
+
+  static createUser (user, pass) {
+    firebase.auth().createUserWithEmailAndPassword(user, pass).catch(function (error) {
+      // Handle Errors here.
+      const errorCode = error.code
+      const errorMessage = error.message
+      console.log(errorMessage, errorCode)
+      // ...
+    })
+  }
 }
-
-// export function loginUtils (user, pass) {
-//   firebase.auth().signInWithEmailAndPassword(user, pass).catch(function (error) {
-//     // Handle Errors here.
-//     const errorCode = error.code
-//     const errorMessage = error.message
-//     console.log(errorCode, errorMessage)
-//     this.checkUserStatus()
-//     // ...
-//   })
-// }
-
-// export function checkUserStatus () {
-//   firebase.auth().onAuthStateChanged(function (user) {
-//     if (user) {
-//       return true
-//     } else {
-//       return false
-//     }
-//   })
-// }

@@ -9,6 +9,7 @@ export default class NavBar extends Component {
       active: false
     }
     this.firebase = Firebase
+    this.handleSignOut = this.handleSignOut.bind(this)
   }
   handleSignOut () {
     this.firebase.signOut()

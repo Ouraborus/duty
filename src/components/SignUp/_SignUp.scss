@@ -34,12 +34,16 @@
 			}
 		}
 		&-button{
-			width: 90%;
-			background-color: rgb(63,81,181) !important;
-			margin-bottom: 35px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 27px;
+			width: 170px;
+			background-color: rgb(63,81,181);
+			color: white;
+			border: none;
 			&:last-child{
 				margin-bottom: 0;
-				
 			}
 		}
 	}
