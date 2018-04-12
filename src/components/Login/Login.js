@@ -1,27 +1,27 @@
 import React, { Component, Fragment } from 'react'
+import Firebase from '../../firebase/Firebase'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { Firebase } from '../../firebase/Firebase'
 import './_login.scss'
 import '../../scss/_icon.scss'
 
 export default class Login extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.handleLogin = this.handleLogin.bind(this)
     this.state = {
       redirect: false
     }
-    this.firebase = new Firebase()
+    this.firebase = Firebase
   }
 
   handleLogin () {
     this.firebase.loginUtils(this.user.value, this.pass.value)
     const approved = this.firebase.checkUserStatus()
-    console.log(approved)
     this.setState(() => {
       return { redirect: approved }
     })
+    return this.state.redirect ? (<Redirect to='/dashboard' />) : ''
   }
 
   render () {
@@ -32,10 +32,8 @@ export default class Login extends Component {
           <section className='login__form'>
             <input className='login__form-input' placeholder='Username or Email' type='text' required ref={(user) => { this.user = user }} />
             <input className='login__form-input' placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
-            <div className='login__button' onClick={this.handleLogin}>
-              {/* <Link to='/dashboard' className='login__button-text'>Entrar</Link> */}
-              {this.state.redirect ? (<Redirect to='/dashboard' />) : (console.log(this))}
-            </div>
+            <button className='login__button' onClick={this.handleLogin}> Entrar
+            </button>
             <div>
               <Link to='/registrarse'>¿No estás registrado aún?</Link>
             </div>

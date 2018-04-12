@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react'
+import Firebase from '../../firebase/Firebase'
+import { Link } from 'react-router-dom'
 import './_NavBar.scss'
 export default class NavBar extends Component {
   constructor (props) {
@@ -6,6 +8,10 @@ export default class NavBar extends Component {
     this.state = {
       active: false
     }
+    this.firebase = Firebase
+  }
+  handleSignOut () {
+    this.firebase.signOut()
   }
   render () {
     return (
@@ -19,9 +25,10 @@ export default class NavBar extends Component {
           <div className='mdl-layout__drawer'>
             <span className='mdl-layout-title'>Duty</span>
             <nav className='mdl-navigation'>
-              <a className='mdl-navigation__link' href=''>Dashboard</a>
-              <a className='mdl-navigation__link' href=''>Contacto</a>
-              <a className='mdl-navigation__link' href=''>Acerca</a>
+              <Link className='mdl-navigation__link' to='/dashboard'> Dashboard </Link>
+              <Link className='mdl-navigation__link' to='/contact'> Contacto </Link>
+              <Link className='mdl-navigation__link' to='/about'> Acerca </Link>
+              <Link className='mdl-navigation__link' onClick={this.handleSignOut} to='/'> Cerrar Sesión </Link>
             </nav>
           </div>
         </div>

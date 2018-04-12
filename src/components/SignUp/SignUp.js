@@ -1,8 +1,14 @@
 import React, { Component, Fragment } from 'react'
+import Firebase from '../../firebase/Firebase'
 import { Link } from 'react-router-dom'
 import './_SignUp.scss'
 
 export default class SignUp extends Component {
+  constructor (props) {
+    super(props)
+    this.firebase = Firebase
+    console.log(this)
+  }
   render () {
     return (
       <Fragment>

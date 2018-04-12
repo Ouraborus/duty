@@ -1,34 +1,32 @@
 import firebase from 'firebase'
 
-export class Firebase {
-  constructor () {
-    this.config = {
-      apiKey: 'AIzaSyCmDbjyZHYLEWUFu-Guu98TyO8gv-4Gq-8',
-      authDomain: 'duty-94b1f.firebaseapp.com',
-      databaseURL: 'https://duty-94b1f.firebaseio.com',
-      projectId: 'duty-94b1f',
-      storageBucket: 'duty-94b1f.appspot.com',
-      messagingSenderId: '620893240339'
-    }
-    this.firebase = firebase.initializeApp(this.config)
+export default class Firebase {
+  static init (conf) {
+    console.log(conf)
+    this.firebase = firebase.initializeApp(conf)
   }
-  loginUtils (user, pass) {
+
+  static loginUtils (user, pass) {
     this.firebase.auth().signInWithEmailAndPassword(user, pass).catch(function (error) {
       const errorMessage = error.message
       console.log(errorMessage)
     })
   }
 
-  async checkUserStatus () {
-    var b
-    await this.firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        b = true
-      } else {
-        b = false
-      }
+  static checkUserStatus () {
+    const user = firebase.auth().currentUser
+    if (user) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  static signOut () {
+    firebase.auth().signOut().then(function () {
+    }).catch(function (error) {
+      console.log(error)
     })
-    return b
   }
 }
 
