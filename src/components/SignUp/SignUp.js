@@ -16,6 +16,7 @@ export default class SignUp extends Component {
 
   handleSignUp () {
     this.firebase.createUser(this.user.value, this.pass.value)
+    this.firebase.addUserData(this.userName.value)
     this.setState((currentState) => {
       return { approved: !currentState.approved }
     })
@@ -29,7 +30,7 @@ export default class SignUp extends Component {
           <section className='signup__form'>
             <input className='signup__form-input' placeholder='Username or Email' type='text' required ref={(user) => { this.user = user }} />
             <input className='signup__form-input' placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
-            <input className='signup__form-input' placeholder='Nombres' type='text' required />
+            <input className='signup__form-input' placeholder='Nombres' type='text' required ref={(userName) => { this.userName = userName }} />
             <input className='signup__form-input' placeholder='Apellidos' type='text' required />
             <input className='signup__form-input' placeholder='Edad' type='number' required />
             <input className='signup__form-input' placeholder='Lugar de trabajo' type='text' required />

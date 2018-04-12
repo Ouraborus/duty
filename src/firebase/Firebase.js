@@ -37,4 +37,19 @@ export default class Firebase {
       // ...
     })
   }
+
+  static addUserData (userName) {
+    console.log(userName)
+    const user = firebase.auth().currentUser
+    user.updateProfile({
+      displayName: userName
+    }).then(function () {
+      console.log(user)
+      // Update successful.
+    }).catch(function (error) {
+      // An error happened.
+      console.log(user)
+      console.log(error)
+    })
+  }
 }
