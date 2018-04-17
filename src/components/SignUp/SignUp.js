@@ -10,7 +10,6 @@ export default class SignUp extends Component {
     this.state = {
       approved: false
     }
-    console.log(this)
     this.handleSignUp = this.handleSignUp.bind(this)
   }
 
