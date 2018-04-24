@@ -28,7 +28,8 @@ export default class Firebase {
     })
   }
 
-  static createUser (user, pass) {
+  static createUser ({user, pass, userName, userLastName}) {
+    console.log(user)
     firebase.auth().createUserWithEmailAndPassword(user, pass).catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code
@@ -36,19 +37,19 @@ export default class Firebase {
       console.log(errorMessage, errorCode)
       // ...
     })
+    this.addUserData(userName, userLastName)
   }
 
-  static addUserData (userName) {
+  static addUserData (userName, userLastName) {
     console.log(userName)
     const user = firebase.auth().currentUser
     user.updateProfile({
-      displayName: userName
+      displayName: userName + ' ' + userLastName
     }).then(function () {
       console.log(user)
       // Update successful.
     }).catch(function (error) {
       // An error happened.
-      console.log(user)
       console.log(error)
     })
   }

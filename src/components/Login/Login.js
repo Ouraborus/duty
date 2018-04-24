@@ -15,9 +15,6 @@ export default class Login extends Component {
     this.firebase = Firebase
   }
 
-  /**
-   * Hay que arreglar la validación de campos la segunda vez que la persona desee entrar, quitar el console.log del redirect y tratar de ubicarlo afuera del render
-   */
   handleLogin () {
     if (this.user.value !== '' && this.pass.value !== '') {
       this.firebase.loginUtils(this.user.value, this.pass.value)
@@ -25,12 +22,7 @@ export default class Login extends Component {
       this.setState(() => {
         return { redirect: approved }
       })
-      console.log(this.state.redirect)
     }
-    /*
-    return (
-      this.state.redirect ? <Redirect to='/dashboard' /> : console.log('hola')
-    ) */
   }
 
   render () {
@@ -41,7 +33,7 @@ export default class Login extends Component {
           <section className='login__form'>
             <input className='login__form-input' placeholder='Username or Email' type='text' required ref={(user) => { this.user = user }} />
             <input className='login__form-input' placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
-            <button className='login__button' onClick={this.handleLogin}> Entrar {this.state.redirect ? <Redirect to='/dashboard' /> : console.log('hola')}
+            <button className='login__button' onClick={this.handleLogin}> Entrar {this.state.redirect ? <Redirect to='/dashboard' /> : undefined}
             </button>
             <div>
               <Link to='/registrarse'>¿No estás registrado aún?</Link>
