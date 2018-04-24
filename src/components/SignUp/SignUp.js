@@ -8,9 +8,11 @@ export default class SignUp extends Component {
     super(props)
     this.firebase = Firebase
     this.state = {
-      approved: false
+      approved: false,
+      isCompany: false
     }
     this.handleSignUp = this.handleSignUp.bind(this)
+    this.handleCheckbox = this.handleCheckbox.bind(this)
   }
 
   handleSignUp () {
@@ -21,7 +23,16 @@ export default class SignUp extends Component {
     })
   }
 
+  handleCheckbox () {
+    this.setState((currentState) => {
+      return {isCompany: !currentState.isCompany}
+    })
+  }
+
   render () {
+    const states = {
+      isCompany: this.state.isCompany ? '' : 'signup__form-company'
+    }
     return (
       <Fragment>
         <div className='signup'>
@@ -32,7 +43,11 @@ export default class SignUp extends Component {
             <input className='signup__form-input' placeholder='Nombres' type='text' required ref={(userName) => { this.userName = userName }} />
             <input className='signup__form-input' placeholder='Apellidos' type='text' required />
             <input className='signup__form-input' placeholder='Edad' type='number' required />
-            <input className='signup__form-input' placeholder='Lugar de trabajo' type='text' required />
+            <div className='signup__form-checkbox'>
+              <input type='checkbox' name='isCompany' onClick={this.handleCheckbox} />
+              <label>Voy a registrar una empresa</label>
+            </div>
+            <input className={`signup__form-input ${states.isCompany}`}placeholder='Lugar de trabajo' type='text' required />
             <button className='signup__form-button' onClick={this.handleSignUp}> Registrarse {this.state.approved ? <Redirect to='/dashboard' /> : ''}
             </button>
           </section>

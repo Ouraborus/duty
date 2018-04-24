@@ -33,6 +33,15 @@
 				outline: none;
 			}
 		}
+		&-checkbox{
+			width: 90%;
+			margin-bottom: 35px;
+			font-size: 16px;
+			font-family: "Helvetica","Arial",sans-serif;
+			& > input {
+				margin-right: 10px;
+			}
+		}
 		&-button{
 			display: flex;
 			justify-content: center;
@@ -45,6 +54,9 @@
 			&:last-child{
 				margin-bottom: 0;
 			}
+		}
+		&-company{
+			display: none;
 		}
 	}
 }
