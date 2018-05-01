@@ -3,6 +3,7 @@ import firebase from 'firebase'
 export default class Firebase {
   static init (conf) {
     this.firebase = firebase.initializeApp(conf)
+    this.database = firebase.database()
   }
 
   static loginUtils (user, pass) {
@@ -28,8 +29,7 @@ export default class Firebase {
     })
   }
 
-  static createUser ({user, pass, userName, userLastName}) {
-    console.log(user)
+  static createUser ({user, pass}) {
     firebase.auth().createUserWithEmailAndPassword(user, pass).catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code
@@ -37,20 +37,24 @@ export default class Firebase {
       console.log(errorMessage, errorCode)
       // ...
     })
-    this.addUserData(userName, userLastName)
   }
 
-  static addUserData (userName, userLastName) {
-    console.log(userName)
-    const user = firebase.auth().currentUser
-    user.updateProfile({
-      displayName: userName + ' ' + userLastName
-    }).then(function () {
-      console.log(user)
-      // Update successful.
-    }).catch(function (error) {
-      // An error happened.
-      console.log(error)
+  static addUserData ({userName, userLastName, age = false, eps = false, company = false, nit = false}) {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        firebase.database().ref('users/' + user.uid).set({
+          username: userName,
+          userLastName: userLastName,
+          age: age,
+          eps: eps,
+          company: company,
+          nit: nit
+          // Completar JSON
+        })
+      } else {
+        // No user is signed in.
+      }
     })
   }
 }

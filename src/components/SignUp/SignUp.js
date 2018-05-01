@@ -16,15 +16,25 @@ export default class SignUp extends Component {
   }
 
   handleSignUp () {
-    let values = {'user': this.user.value, 'pass': this.pass.value, 'userName': this.userName.value, 'userLastName': this.userLastName.value}
+    let values = {}
+    values.user = this.user.value
+    values.pass = this.pass.value
+    values.userName = this.userName.value
+    values.userLastName = this.userLastName.value
+
     if (this.state.isCompany) {
-      values = {values, 'company': this.company.value, 'nit': this.nit.value}
+      values.company = this.company.value
+      values.nit = this.nit.value
+    } else {
+      values.age = this.age.value
+      values.eps = this.eps.value
     }
     const fieldsFlag = this.validateFields(Object.values(values))
     if (fieldsFlag === false) {
       window.alert('Faltan campos por llenar')
     } else {
       this.firebase.createUser(values)
+      this.firebase.addUserData(values)
       this.setState((currentState) => {
         return { approved: !currentState.approved }
       })
@@ -53,8 +63,8 @@ export default class SignUp extends Component {
             <input className='signup__form-input' placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
             <input className='signup__form-input' placeholder='Nombres' type='text' required ref={(userName) => { this.userName = userName }} />
             <input className='signup__form-input' placeholder='Apellidos' type='text' required ref={(userLastName) => { this.userLastName = userLastName }} />
-            <input className='signup__form-input' placeholder='Edad' type='number' required />
-            <input className='signup__form-input' placeholder='EPS' type='text' />
+            <input className='signup__form-input' placeholder='Edad' type='number' required ref={(age) => { this.age = age }} />
+            <input className='signup__form-input' placeholder='EPS' type='text' ref={(eps) => { this.eps = eps }} />
             <div className='signup__form-checkbox'>
               <input type='checkbox' name='isCompany' onClick={this.handleCheckbox} />
               <label>Voy a registrar una empresa</label>
