@@ -33,7 +33,7 @@ export default class Login extends Component {
           <section className='login__form'>
             <input className='login__form-input' placeholder='Username or Email' type='text' required ref={(user) => { this.user = user }} />
             <input className='login__form-input' placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
-            <button className='login__button' onClick={this.handleLogin}> Entrar {this.state.redirect ? <Redirect to='/dashboard' /> : undefined}
+            <button className='login__button' onClick={this.handleLogin}> Entrar {this.state.redirect ? <Redirect to='/trabajos' /> : undefined}
             </button>
             <div>
               <Link to='/registrarse'>¿No estás registrado aún?</Link>
