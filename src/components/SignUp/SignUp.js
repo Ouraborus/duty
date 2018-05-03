@@ -71,7 +71,7 @@ export default class SignUp extends Component {
             </div>
             <input className={`signup__form-input ${states.isCompany}`}placeholder='Empresa' type='text' ref={(company) => { this.company = company }} />
             <input className={`signup__form-input ${states.isCompany}`}placeholder='NIT' type='text' ref={(nit) => { this.nit = nit }} />
-            <button className='signup__form-button' onClick={this.handleSignUp}> Registrarse {this.state.approved ? <Redirect to='/dashboard' /> : ''}
+            <button className='signup__form-button' onClick={this.handleSignUp}> Registrarse {this.state.approved ? <Redirect to='/trabajos' /> : ''}
             </button>
           </section>
         </div>

@@ -4,6 +4,7 @@ import { HashRouter as Router, Route } from 'react-router-dom'
 import Firebase from './firebase/Firebase'
 import Login from './components/Login/Login'
 import Dashboard from './components/Dashboard/Dashboard'
+import CompanyJobs from './components/CompanyJobs/CompanyJobs'
 import SignUp from './components/SignUp/SignUp'
 import credentials from './firebase/Credentials'
 import './scss/_reset.scss'
@@ -19,6 +20,7 @@ export default function App () {
         <Route exact path='/' component={() => <Login />} />
         <Route exact path='/registrarse' component={() => <SignUp />} />
         <Route exact path='/dashboard' component={() => <Dashboard />} />
+        <Route exact path='/trabajos' component={() => <CompanyJobs />} />
       </Fragment>
     </Router>
   )
