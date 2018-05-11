@@ -58,23 +58,22 @@ export default class Firebase {
     })
   }
 
-  static addCompanyJob ({company, job, date, salary, description}) {
-    // firebase.auth().onAuthStateChanged(function (user) {
-    //   console.log(Date.now() + user.uid.slice(0, 2))
-    //   if (user) {
-    //     // User is signed in.
-    //     firebase.database().ref('jobs/' + user.uid).set({
-    //       company: company,
-    //       job: job,
-    //       date: date,
-    //       salary: salary,
-    //       description: description,
-    //       id: Date.now() + user.uid.slice(0, 2)
-    //       // Completar JSON
-    //     })
-    //   } else {
-    //     // No user is signed in.
-    //   }
-    // })
+  static addCompanyJob ({company, job, startDate, finishDate, salary, description}) {
+    firebase.auth().onAuthStateChanged(function (user) {
+      console.log(Date.now() + user.uid.slice(0, 2))
+      if (user) {
+        // User is signed in.
+        firebase.database().ref('jobs/' + user.uid + '/' + Date.now() + user.uid.slice(0, 2) + '/').set({
+          company: company,
+          job: job,
+          startDate: startDate,
+          finishDate: finishDate,
+          salary: salary,
+          description: description
+        })
+      } else {
+        // No user is signed in.
+      }
+    })
   }
 }

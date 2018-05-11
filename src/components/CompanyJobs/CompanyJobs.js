@@ -14,7 +14,8 @@ export default class CompanyJobs extends Component {
     this.resetState = this.resetState.bind(this)
     this.handleCompanyInput = this.handleCompanyInput.bind(this)
     this.handleJobInput = this.handleJobInput.bind(this)
-    this.handleDateInput = this.handleDateInput.bind(this)
+    this.handleStartDateInput = this.handleStartDateInput.bind(this)
+    this.handleFinishDateInput = this.handleFinishDateInput.bind(this)
     this.handleSalaryInput = this.handleSalaryInput.bind(this)
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this)
 
@@ -64,8 +65,11 @@ export default class CompanyJobs extends Component {
     this.setState({jobInput: event.target.value})
   }
 
-  handleDateInput (event) {
-    this.setState({dateInput: event.target.value})
+  handleStartDateInput (event) {
+    this.setState({startDateInput: event.target.value})
+  }
+  handleFinishDateInput (event) {
+    this.setState({finishDateInput: event.target.value})
   }
 
   handleSalaryInput (event) {
@@ -77,28 +81,26 @@ export default class CompanyJobs extends Component {
   }
 
   confirmJob () {
-    this.setState((currentState) => {
-      return {formActive: !currentState.formActive}
-    })
+    this.setState({formActive: false})
     let jobValue = {}
     jobValue.company = this.state.companyInput
     jobValue.job = this.state.jobInput
-    jobValue.date = this.state.dateInput
+    jobValue.startDate = this.state.startDateInput
+    jobValue.finishDate = this.state.finishDateInput
     jobValue.salary = this.state.salaryInput
     jobValue.description = this.state.descriptionInput
     const fieldsFlag = this.validateFields(Object.values(jobValue))
     if (!fieldsFlag) {
       window.alert('Faltan campos por llenar')
     } else {
+      console.log(jobValue)
       this.firebase.addCompanyJob(jobValue)
       this.resetState()
     }
   }
 
   resetState () {
-    this.setState((currentState) => {
-      return {companyInput: '', jobInput: '', dateInput: '', salaryInput: '', descriptionInput: '', formActive: false}
-    })
+    this.setState({companyInput: '', jobInput: '', startDateInput: '', finishDateInput: '', salaryInput: '', descriptionInput: '', formActive: false})
   }
 
   validateFields (values) {
@@ -120,7 +122,10 @@ export default class CompanyJobs extends Component {
           <div className={`jobs__form ${states.formActive}`}>
             <input className='jobs__form-input' placeholder='Nombre Empresa' type='text' value={this.state.companyInput} onChange={this.handleCompanyInput} required ref={(company) => { this.company = company }} />
             <input className='jobs__form-input' placeholder='Cargo' type='text' value={this.state.jobInput} onChange={this.handleJobInput} required ref={(job) => { this.job = job }} />
-            <input className='jobs__form-input' placeholder='Fecha' type='text' value={this.state.dateInput} onChange={this.handleDateInput} required ref={(date) => { this.date = date }} />
+            <label className='jobs__form-label' >Fecha inicio</label>
+            <input className='jobs__form-input' placeholder='Fecha Inicio' type='date' value={this.state.startDateInput} onChange={this.handleStartDateInput} required ref={(date) => { this.startDate = date }} />
+            <label className='jobs__form-label' >Fecha finalización</label>
+            <input className='jobs__form-input' placeholder='Fecha Finalización' type='date' value={this.state.finishDateInput} onChange={this.handleFinishDateInput} required ref={(date) => { this.finishDate = date }} />
             <input className='jobs__form-input' placeholder='Salario' type='number' value={this.state.salaryInput} onChange={this.handleSalaryInput} required ref={(salary) => { this.salary = salary }} />
             <input className='jobs__form-input' placeholder='Descripción' type='text' value={this.state.descriptionInput} onChange={this.handleDescriptionInput} required ref={(description) => { this.description = description }} />
             <div className='jobs__button-container'>
