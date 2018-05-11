@@ -8,7 +8,7 @@ export default class CompanyJobs extends Component {
   constructor (props) {
     super(props)
     this.firebase = Firebase
-    // this.addJob = this.addJob.bind(this)
+    this.loadJobs = this.loadJobs.bind(this)
     this.handleForm = this.handleForm.bind(this)
     this.confirmJob = this.confirmJob.bind(this)
     this.resetState = this.resetState.bind(this)
@@ -18,6 +18,7 @@ export default class CompanyJobs extends Component {
     this.handleFinishDateInput = this.handleFinishDateInput.bind(this)
     this.handleSalaryInput = this.handleSalaryInput.bind(this)
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this)
+    this.callbackFirebase = this.callbackFirebase.bind(this)
 
     this.jobs = []
     this.state = {
@@ -31,25 +32,15 @@ export default class CompanyJobs extends Component {
 
     }
   }
-  /*
-  addJob () {
-    this.setState((currentState) => {
-      return {formActive: !currentState.formActive}
-    })
-    this.jobs.push({ id: Math.floor(Math.random() * 11),
-      companyName: 'Qbano',
-      job: 'Mesero',
-      date: '01/05/2018 - 03/05/2018',
-      salary: 'COP $300.000',
-      jobDescription: `Lorem ipsum dolor sit amet,
-      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt mollit anim id est laborum.`
-    })
+
+  callbackFirebase () {
+    this.firebase.getCompanyJobs(this.loadJobs)
+  }
+
+  loadJobs (jobs) {
+    this.jobs = jobs
     this.setState({ jobs: this.jobs })
-  } */
+  }
 
   handleForm (event) {
     this.setState((currentState) => {
@@ -100,7 +91,7 @@ export default class CompanyJobs extends Component {
   }
 
   resetState () {
-    this.setState({companyInput: '', jobInput: '', startDateInput: '', finishDateInput: '', salaryInput: '', descriptionInput: '', formActive: false})
+    this.setState({companyInput: '', jobInput: '', salaryInput: '', descriptionInput: '', formActive: false})
   }
 
   validateFields (values) {
@@ -115,19 +106,20 @@ export default class CompanyJobs extends Component {
     return (
       <div className='app-container'>
         <div className='grid'>
-          {this.state.jobs.map(job => <Card key={job.id} />)}
+          {/* CONTINUE FROM HERE */}
+          {/* {this.state.jobs.map(job => <Card key={job.id} />)} */}
         </div>
         <Button data={{type: 'add', action: this.handleForm}} />
         <Fragment>
           <div className={`jobs__form ${states.formActive}`}>
-            <input className='jobs__form-input' placeholder='Nombre Empresa' type='text' value={this.state.companyInput} onChange={this.handleCompanyInput} required ref={(company) => { this.company = company }} />
-            <input className='jobs__form-input' placeholder='Cargo' type='text' value={this.state.jobInput} onChange={this.handleJobInput} required ref={(job) => { this.job = job }} />
+            <input className='jobs__form-input' placeholder='Nombre Empresa' type='text' value={this.state.companyInput} onChange={this.handleCompanyInput} required />
+            <input className='jobs__form-input' placeholder='Cargo' type='text' value={this.state.jobInput} onChange={this.handleJobInput} required />
             <label className='jobs__form-label' >Fecha inicio</label>
-            <input className='jobs__form-input' placeholder='Fecha Inicio' type='date' value={this.state.startDateInput} onChange={this.handleStartDateInput} required ref={(date) => { this.startDate = date }} />
+            <input className='jobs__form-input' placeholder='Fecha Inicio' type='date' value={this.state.startDateInput} onChange={this.handleStartDateInput} required />
             <label className='jobs__form-label' >Fecha finalización</label>
-            <input className='jobs__form-input' placeholder='Fecha Finalización' type='date' value={this.state.finishDateInput} onChange={this.handleFinishDateInput} required ref={(date) => { this.finishDate = date }} />
-            <input className='jobs__form-input' placeholder='Salario' type='number' value={this.state.salaryInput} onChange={this.handleSalaryInput} required ref={(salary) => { this.salary = salary }} />
-            <input className='jobs__form-input' placeholder='Descripción' type='text' value={this.state.descriptionInput} onChange={this.handleDescriptionInput} required ref={(description) => { this.description = description }} />
+            <input className='jobs__form-input' placeholder='Fecha Finalización' type='date' value={this.state.finishDateInput} onChange={this.handleFinishDateInput} required />
+            <input className='jobs__form-input' placeholder='Salario' type='number' value={this.state.salaryInput} onChange={this.handleSalaryInput} required />
+            <input className='jobs__form-input' placeholder='Descripción' type='text' value={this.state.descriptionInput} onChange={this.handleDescriptionInput} required />
             <div className='jobs__button-container'>
               <button className='jobs__form-button' onClick={this.resetState}> Cancelar </button>
               <button className='jobs__form-button' onClick={this.confirmJob}> Confirmar </button>

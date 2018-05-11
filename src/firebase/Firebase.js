@@ -60,7 +60,6 @@ export default class Firebase {
 
   static addCompanyJob ({company, job, startDate, finishDate, salary, description}) {
     firebase.auth().onAuthStateChanged(function (user) {
-      console.log(Date.now() + user.uid.slice(0, 2))
       if (user) {
         // User is signed in.
         firebase.database().ref('jobs/' + user.uid + '/' + Date.now() + user.uid.slice(0, 2) + '/').set({
@@ -73,6 +72,20 @@ export default class Firebase {
         })
       } else {
         // No user is signed in.
+      }
+    })
+  }
+
+  static getCompanyJobs (callback) {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        let companyJobs = firebase.database().ref('jobs/' + user.uid + '/')
+        companyJobs.on('value', function (snapshot) {
+          callback(snapshot.val())
+        })
+        return companyJobs
+      } else {
+        console.log('no cul')
       }
     })
   }
