@@ -18,8 +18,8 @@ export default class CompanyJobs extends Component {
     this.handleFinishDateInput = this.handleFinishDateInput.bind(this)
     this.handleSalaryInput = this.handleSalaryInput.bind(this)
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this)
-    this.callbackFirebase = this.callbackFirebase.bind(this)
-
+    // this.callbackFirebase = this.callbackFirebase.bind(this)
+    this.jobsId = []
     this.jobs = []
     this.state = {
       jobs: [],
@@ -31,15 +31,6 @@ export default class CompanyJobs extends Component {
       descriptionInput: ''
 
     }
-  }
-
-  callbackFirebase () {
-    this.firebase.getCompanyJobs(this.loadJobs)
-  }
-
-  loadJobs (jobs) {
-    this.jobs = jobs
-    this.setState({ jobs: this.jobs })
   }
 
   handleForm (event) {
@@ -84,8 +75,8 @@ export default class CompanyJobs extends Component {
     if (!fieldsFlag) {
       window.alert('Faltan campos por llenar')
     } else {
-      console.log(jobValue)
       this.firebase.addCompanyJob(jobValue)
+      this.firebase.getCompanyJobs(this.loadJobs)
       this.resetState()
     }
   }
@@ -99,6 +90,16 @@ export default class CompanyJobs extends Component {
     return flag
   }
 
+  loadJobs (jobs) {
+    this.jobsId = Object.keys(jobs)
+    this.jobs = jobs
+    this.setState({ jobs: this.jobs })
+  }
+
+  componentDidMount () {
+    this.firebase.getCompanyJobs(this.loadJobs)
+  }
+
   render () {
     const states = {
       formActive: this.state.formActive ? 'jobs__form--active' : ''
@@ -106,8 +107,7 @@ export default class CompanyJobs extends Component {
     return (
       <div className='app-container'>
         <div className='grid'>
-          {/* CONTINUE FROM HERE */}
-          {/* {this.state.jobs.map(job => <Card key={job.id} />)} */}
+          {this.jobsId.map(job => <Card key={job} data={this.jobs[job]} />)}
         </div>
         <Button data={{type: 'add', action: this.handleForm}} />
         <Fragment>
