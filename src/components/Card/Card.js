@@ -34,8 +34,11 @@ export default class Card extends Component {
           </a>
         </div>
         <div className='mdl-card__menu'>
-          <button className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'>
+          <button className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect card__button'>
             <i className='material-icons'>delete</i>
+          </button>
+          <button className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect card__button'>
+            <i className='material-icons'>edit</i>
           </button>
         </div>
       </div>
