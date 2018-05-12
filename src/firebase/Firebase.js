@@ -76,6 +76,12 @@ export default class Firebase {
     })
   }
 
+  static editCompanyJob (id, {company, job, startDate, finishDate, salary, description}) {
+    console.log(company, job, startDate, finishDate, salary, description)
+    // const newPostKey = firebase.database().ref().child('posts').push().key
+    // console.log(newPostKey)
+  }
+
   static getCompanyJobs (callback) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -84,6 +90,18 @@ export default class Firebase {
           callback(snapshot.val())
         })
         return companyJobs
+      } else {
+        console.log('no cul')
+      }
+    })
+  }
+
+  static deleteCompanyJob (id) {
+    console.log(id)
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        let job = firebase.database().ref('jobs/' + user.uid + '/' + id)
+        job.remove()
       } else {
         console.log('no cul')
       }
