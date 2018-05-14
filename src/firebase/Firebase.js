@@ -77,9 +77,24 @@ export default class Firebase {
   }
 
   static editCompanyJob (id, {company, job, startDate, finishDate, salary, description}) {
-    console.log(company, job, startDate, finishDate, salary, description)
+    console.log(id, company, job, startDate, finishDate, salary, description)
     // const newPostKey = firebase.database().ref().child('posts').push().key
     // console.log(newPostKey)
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        firebase.database().ref('jobs/' + user.uid + '/' + id + '/').set({
+          company: company,
+          job: job,
+          startDate: startDate,
+          finishDate: finishDate,
+          salary: salary,
+          description: description
+        })
+      } else {
+        // No user is signed in.
+      }
+    })
   }
 
   static getCompanyJobs (callback) {

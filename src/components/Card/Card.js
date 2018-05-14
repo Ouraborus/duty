@@ -23,7 +23,7 @@ export default class Card extends Component {
   }
 
   deleteHandler () {
-    this.firebase.deleteCompanyJob(this._reactInternalFiber.key)
+    this.props.deleteJobCallback(this._reactInternalFiber.key, this.firebase)
   }
 
   render () {
