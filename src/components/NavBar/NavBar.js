@@ -27,8 +27,9 @@ export default class NavBar extends Component {
             <span className='mdl-layout-title'>Duty</span>
             <nav className='mdl-navigation'>
               <Link className='mdl-navigation__link' to='/dashboard'> Dashboard </Link>
-              <Link className='mdl-navigation__link' to='/contact'> Contacto </Link>
-              <Link className='mdl-navigation__link' to='/about'> Acerca </Link>
+              <Link className='mdl-navigation__link' to='/acerca'> Acerca </Link>
+              <Link className='mdl-navigation__link' to='/descripcion'> ¿Qué es Duty? </Link>
+              <Link className='mdl-navigation__link' to='/legal'> Términos y condiciones </Link>
               <Link className='mdl-navigation__link' onClick={this.handleSignOut} to='/'> Cerrar Sesión </Link>
             </nav>
           </div>
