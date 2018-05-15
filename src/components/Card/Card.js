@@ -7,10 +7,10 @@ export default class Card extends Component {
     this.firebase = Firebase
     this.editHandler = this.editHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
+    this.cardHandler = this.cardHandler.bind(this)
     this.state = {
       active: false
     }
-    this.cardHandler = this.cardHandler.bind(this)
   }
   cardHandler () {
     this.setState((currentState) => {
@@ -19,7 +19,7 @@ export default class Card extends Component {
   }
 
   editHandler () {
-    this.props.editJobCallback()
+    this.props.editJobCallback(true, this._reactInternalFiber.key)
   }
 
   deleteHandler () {

@@ -8,6 +8,7 @@ export default class CompanyJobs extends Component {
     this.firebase = Firebase
     this.loadJobs = this.loadJobs.bind(this)
     this.confirmJob = this.confirmJob.bind(this)
+    this.editJob = this.editJob.bind(this)
     this.getReference = this.getReference.bind(this)
     this.activateCardForm = null
     this.jobsId = []
@@ -24,6 +25,10 @@ export default class CompanyJobs extends Component {
 
   confirmJob (jobValue) {
     this.firebase.addCompanyJob(jobValue)
+    this.firebase.getCompanyJobs(this.loadJobs)
+  }
+  editJob (editValue) {
+    this.firebase.editCompanyJob(editValue)
     this.firebase.getCompanyJobs(this.loadJobs)
   }
 
@@ -49,10 +54,10 @@ export default class CompanyJobs extends Component {
     return (
       <Fragment>
         <div className='app-container'>
-          <CardForm data={this.confirmJob} getReferenceCallback={this.getReference} />
           <div className='grid'>
             {this.state.jobsId.map(job => <Card key={job} data={this.jobs[job]} deleteJobCallback={this.deleteJob} editJobCallback={this.activateCardForm} />)}
           </div>
+          <CardForm createJobCallback={this.confirmJob} editJobCallback={this.editJob} getReferenceCallback={this.getReference} />
         </div>
       </Fragment>
 

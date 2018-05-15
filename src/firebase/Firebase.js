@@ -35,7 +35,6 @@ export default class Firebase {
       const errorCode = error.code
       const errorMessage = error.message
       console.log(errorMessage, errorCode)
-      // ...
     })
   }
 
@@ -50,7 +49,6 @@ export default class Firebase {
           eps: eps,
           company: company,
           nit: nit
-          // Completar JSON
         })
       } else {
         // No user is signed in.
@@ -76,21 +74,19 @@ export default class Firebase {
     })
   }
 
-  static editCompanyJob (id, {company, job, startDate, finishDate, salary, description}) {
-    console.log(id, company, job, startDate, finishDate, salary, description)
-    // const newPostKey = firebase.database().ref().child('posts').push().key
-    // console.log(newPostKey)
+  static editCompanyJob ({jobId, company, job, startDate, finishDate, salary, description}) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        // User is signed in.
-        firebase.database().ref('jobs/' + user.uid + '/' + id + '/').set({
+        let updates = {}
+        updates['/jobs/' + user.uid + '/' + jobId + '/'] = {
           company: company,
           job: job,
           startDate: startDate,
           finishDate: finishDate,
           salary: salary,
           description: description
-        })
+        }
+        firebase.database().ref().update(updates)
       } else {
         // No user is signed in.
       }
@@ -106,19 +102,18 @@ export default class Firebase {
         })
         return companyJobs
       } else {
-        console.log('no cul')
+        console.log('error')
       }
     })
   }
 
   static deleteCompanyJob (id) {
-    console.log(id)
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         let job = firebase.database().ref('jobs/' + user.uid + '/' + id)
         job.remove()
       } else {
-        console.log('no cul')
+        console.log('error')
       }
     })
   }
