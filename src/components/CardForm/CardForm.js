@@ -20,7 +20,7 @@ export default class CardForm extends Component {
     }
   }
 
-  handleForm (event) {
+  handleForm () {
     this.setState((currentState) => {
       return {formActive: !currentState.formActive}
     })
@@ -55,6 +55,10 @@ export default class CardForm extends Component {
   validateFields (values) {
     const flag = values.every(element => element !== '')
     return flag
+  }
+
+  componentDidMount () {
+    this.props.getReferenceCallback(this.handleForm)
   }
 
   render () {

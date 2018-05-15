@@ -19,7 +19,6 @@ export default class Card extends Component {
   }
 
   editHandler () {
-    // this.firebase.editCompanyJob('1', this.props.data)
     this.props.editJobCallback()
   }
 
