@@ -12,6 +12,7 @@ import Legal from './components/Legal/Legal'
 import Description from './components/Description/Description'
 import './scss/_reset.scss'
 import './scss/_fonts.scss'
+import './scss/_responsive.scss'
 import './scss/_app.scss'
 
 export default function App () {

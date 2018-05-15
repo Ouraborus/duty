@@ -1,8 +1,54 @@
-.about{
-	width: 100%;
-	height: calc(100% - 56px);
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+@import '../../scss/_variables.scss';
+@import '../../scss/_responsive.scss';
+.about {
+		width: 100%;
+		margin-top: 100px;		
+		display: flex;
+    justify-content: center;
+    align-items: center;
+		flex-direction: column;
+    &__container {
+        width: 90%;
+		}
+		&__members{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			@include large{
+				flex-direction: row;
+			}
+		}
+		&__title{
+			margin-top: 20px;
+			font-size: 50px;
+			&--medium{
+				font-size: 40px;
+			}
+		}
+		&__text{
+			margin: 10px 0px;
+			font-size: 20px;
+			text-align: center;
+			&--italic{
+				font-style: italic;
+			}
+		}
+		&__hr{
+			width: 80%;
+		}
+		&__img{
+			width: 150px;
+			border-radius: 100%;
+		}
+		&__description{
+			margin: 10px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			@include large {
+			margin: 100px;
+			}
+		}
 }
