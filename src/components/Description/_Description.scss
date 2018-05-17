@@ -1,8 +1,19 @@
 .description{
 	width: 100%;
+	margin-top: 56px;
 	height: calc(100% - 56px);
 	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+	padding: 0 10%;
+	&__title{
+		font-size: 46px;
+		text-align: center;
+		
+	}
+	&__paragraph{
+		text-align: center;
+	}
 }
