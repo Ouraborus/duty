@@ -12,5 +12,3 @@ At your browser:  `localhost:8080`
 Esteban Cardona Álvarez
 
 Alejandro Villa Cárdenas
-
-Pablo Wolff Velásquez

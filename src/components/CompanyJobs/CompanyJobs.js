@@ -19,14 +19,22 @@ export default class CompanyJobs extends Component {
     }
   }
 
+  componentWillMount () {
+    this.jobs = []
+    this.jobsId = []
+    this.setState({ jobs: [], jobsId: [] })
+  }
+
   componentDidMount () {
     this.firebase.getCompanyJobs(this.loadJobs)
   }
 
   confirmJob (jobValue) {
+    console.log('CompanyJob', this)
     this.firebase.addCompanyJob(jobValue)
     this.firebase.getCompanyJobs(this.loadJobs)
   }
+
   editJob (editValue) {
     this.firebase.editCompanyJob(editValue)
     this.firebase.getCompanyJobs(this.loadJobs)
@@ -38,6 +46,7 @@ export default class CompanyJobs extends Component {
 
   loadJobs (jobs) {
     if (jobs) {
+      this.setState({ jobs: [], jobsId: [] })
       this.jobsId = Object.keys(jobs)
       this.jobs = jobs
       this.setState({ jobs: this.jobs, jobsId: this.jobsId })
@@ -55,7 +64,7 @@ export default class CompanyJobs extends Component {
       <Fragment>
         <div className='app-container'>
           <div className='grid'>
-            {this.state.jobsId.map(job => <Card key={job} data={this.jobs[job]} deleteJobCallback={this.deleteJob} editJobCallback={this.activateCardForm} />)}
+            {this.state.jobsId.map(job => <Card key={job} data={this.state.jobs[job]} deleteJobCallback={this.deleteJob} editJobCallback={this.activateCardForm} />)}
           </div>
           <CardForm createJobCallback={this.confirmJob} editJobCallback={this.editJob} getReferenceCallback={this.getReference} />
         </div>

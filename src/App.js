@@ -10,6 +10,7 @@ import credentials from './firebase/Credentials'
 import About from './components/About/About'
 import Legal from './components/Legal/Legal'
 import Description from './components/Description/Description'
+import Dashboard from './components/Dashboard/Dashboard'
 import './scss/_reset.scss'
 import './scss/_fonts.scss'
 import './scss/_responsive.scss'
@@ -28,6 +29,7 @@ export default function App () {
           <Route exact path='/acerca' component={() => <About />} />
           <Route exact path='/legal' component={() => <Legal />} />
           <Route exact path='/descripcion' component={() => <Description />} />
+          <Route exact path='/dashboard' component={() => <Dashboard />} />
           <Route component={NotFound} />
         </Switch>
       </Fragment>

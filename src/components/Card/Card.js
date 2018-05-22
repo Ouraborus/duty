@@ -18,6 +18,10 @@ export default class Card extends Component {
     })
   }
 
+  componentWillMount () {
+    console.log('WillMount de Card', this)
+  }
+
   editHandler () {
     this.props.editJobCallback(true, this._reactInternalFiber.key)
   }

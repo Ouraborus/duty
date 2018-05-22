@@ -20,13 +20,15 @@ export default class NavBar extends Component {
         <div className='mdl-layout mdl-js-layout mdl-layout--fixed-header'>
           <header className='mdl-layout__header'>
             <div className='mdl-layout__header-row'>
-              <span className='mdl-layout-title'>Duty</span>
+              <Link to='/' className='link'>
+                <span className='mdl-layout-title'>Duty</span>
+              </Link>
             </div>
           </header>
           <div className='mdl-layout__drawer'>
             <span className='mdl-layout-title'>Duty</span>
             <nav className='mdl-navigation'>
-              <Link className='mdl-navigation__link' to='/dashboard'> Dashboard </Link>
+              <Link className='mdl-navigation__link' to='/'> Inicio </Link>
               <Link className='mdl-navigation__link' to='/acerca'> Acerca </Link>
               <Link className='mdl-navigation__link' to='/descripcion'> ¿Qué es Duty? </Link>
               <Link className='mdl-navigation__link' to='/legal'> Términos y condiciones </Link>

@@ -22,6 +22,14 @@ export default class Firebase {
     }
   }
 
+  static getStatus (callback, context) {
+    console.log(firebase.auth().currentUser)
+    let user = firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/')
+    user.on('value', function (snapshot) {
+      callback(snapshot.val().company, context)
+    })
+  }
+
   static signOut () {
     firebase.auth().signOut().then(function () {
     }).catch(function (error) {
@@ -58,6 +66,7 @@ export default class Firebase {
 
   static addCompanyJob ({company, job, startDate, finishDate, salary, description}) {
     firebase.auth().onAuthStateChanged(function (user) {
+      console.log(user)
       if (user) {
         // User is signed in.
         firebase.database().ref('jobs/' + user.uid + '/' + Date.now() + user.uid.slice(0, 2) + '/').set({
@@ -104,6 +113,13 @@ export default class Firebase {
       } else {
         console.log('error')
       }
+    })
+  }
+
+  static getAllJobs () {
+    let allJobs = firebase.database().ref('jobs/')
+    allJobs.on('value', function (snapshot) {
+      console.log(snapshot.val())
     })
   }
 

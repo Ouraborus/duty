@@ -15,7 +15,11 @@ export default function Description () {
         <div>
           <h2 className='description__title'>Misión</h2>
         </div>
-        <p className='description__paragraph'>Nuestra misión es..</p>
+        <p className='description__paragraph'>Disminuir la tasa de desempleo e incrementar la cantidad de ingresos de las personas.</p>
+        <div>
+          <h2 className='description__title'>Visión</h2>
+        </div>
+        <p className='description__paragraph'>Expandirnos a diferentes ciudades del país y en cada una mejorar la economía de dicha ciudad, para que tanto negocios como personas cuenten con más ingresos.</p>
       </div>
     </Fragment>
   )
