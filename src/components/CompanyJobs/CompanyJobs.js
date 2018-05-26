@@ -19,18 +19,11 @@ export default class CompanyJobs extends Component {
     }
   }
 
-  componentWillMount () {
-    this.jobs = []
-    this.jobsId = []
-    this.setState({ jobs: [], jobsId: [] })
-  }
-
   componentDidMount () {
     this.firebase.getCompanyJobs(this.loadJobs)
   }
 
   confirmJob (jobValue) {
-    console.log('CompanyJob', this)
     this.firebase.addCompanyJob(jobValue)
     this.firebase.getCompanyJobs(this.loadJobs)
   }
@@ -45,13 +38,13 @@ export default class CompanyJobs extends Component {
   }
 
   loadJobs (jobs) {
+    this.jobs = []
+    this.jobsId = []
+    this.setState({ jobs: [], jobsId: [] })
     if (jobs) {
-      this.setState({ jobs: [], jobsId: [] })
       this.jobsId = Object.keys(jobs)
       this.jobs = jobs
       this.setState({ jobs: this.jobs, jobsId: this.jobsId })
-    } else {
-      this.setState({ jobs: [], jobsId: [] })
     }
   }
 

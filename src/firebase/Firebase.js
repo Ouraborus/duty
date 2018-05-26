@@ -7,7 +7,7 @@ export default class Firebase {
   }
 
   static loginUtils (user, pass) {
-    this.firebase.auth().signInWithEmailAndPassword(user, pass).catch(function (error) {
+    return this.firebase.auth().signInWithEmailAndPassword(user, pass).catch(function (error) {
       const errorMessage = error.message
       console.log(errorMessage)
     })
@@ -23,7 +23,6 @@ export default class Firebase {
   }
 
   static getStatus (callback, context) {
-    console.log(firebase.auth().currentUser)
     let user = firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/')
     user.on('value', function (snapshot) {
       callback(snapshot.val().company, context)
@@ -110,8 +109,6 @@ export default class Firebase {
           callback(snapshot.val())
         })
         return companyJobs
-      } else {
-        console.log('error')
       }
     })
   }
@@ -128,8 +125,6 @@ export default class Firebase {
       if (user) {
         let job = firebase.database().ref('jobs/' + user.uid + '/' + id)
         job.remove()
-      } else {
-        console.log('error')
       }
     })
   }

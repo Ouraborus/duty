@@ -13,6 +13,8 @@ export default class NavBar extends Component {
   }
   handleSignOut () {
     this.firebase.signOut()
+    window.location.reload()
+    window.location.href = 'http://localhost:8080/#/'
   }
   render () {
     return (
@@ -32,7 +34,7 @@ export default class NavBar extends Component {
               <Link className='mdl-navigation__link' to='/acerca'> Acerca </Link>
               <Link className='mdl-navigation__link' to='/descripcion'> ¿Qué es Duty? </Link>
               <Link className='mdl-navigation__link' to='/legal'> Términos y condiciones </Link>
-              <Link className='mdl-navigation__link' onClick={this.handleSignOut} to='/'> Cerrar Sesión </Link>
+              <p className='mdl-navigation__link' onClick={this.handleSignOut} > Cerrar Sesión </p>
             </nav>
           </div>
         </div>

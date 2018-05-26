@@ -66,6 +66,7 @@ export default class CardForm extends Component {
   }
   updateCard () {
     const updateValue = this.captureData()
+    this.setState({isAnUpdate: undefined, jobId: undefined})
     const fieldsFlag = this.validateFields(Object.values(updateValue))
     if (!fieldsFlag) {
       window.alert('Faltan campos por llenar')

@@ -1,4 +1,4 @@
-import Card from '../Card/Card'
+// import Card from '../Card/Card'
 import React, { Component } from 'react'
 import Firebase from '../../firebase/Firebase'
 

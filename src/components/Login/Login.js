@@ -9,6 +9,7 @@ export default class Login extends Component {
   constructor (props) {
     super(props)
     this.handleLogin = this.handleLogin.bind(this)
+    this.handleKey = this.handleKey.bind(this)
     this.elements = {}
     this.state = {
       redirect: false
@@ -42,20 +43,23 @@ export default class Login extends Component {
   } */
 
   componentDidMount () {
-    const isLogged = this.firebase.checkUserStatus()
-    console.log(isLogged)
-    if (isLogged) {
-      return <Redirect to='/trabajos' />
-    }
+    this.user.focus()
   }
 
   handleLogin () {
     if (this.user.value !== '' && this.pass.value !== '') {
-      this.firebase.loginUtils(this.user.value, this.pass.value)
-      const approved = this.firebase.checkUserStatus()
-      this.setState(() => {
-        return { redirect: approved }
+      this.firebase.loginUtils(this.user.value, this.pass.value).then(() => {
+        const approved = this.firebase.checkUserStatus()
+        this.setState(() => {
+          return { redirect: approved }
+        })
       })
+    }
+  }
+
+  handleKey (event) {
+    if (event.key === 'Enter') {
+      this.handleLogin()
     }
   }
 
@@ -65,8 +69,8 @@ export default class Login extends Component {
         <div className='login'>
           <div className='login__image-container' />
           <section className='login__form'>
-            <input className='login__form-input' placeholder='Username or Email' type='text' required ref={(user) => { this.user = user }} />
-            <input className='login__form-input' placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
+            <input className='login__form-input' onKeyPress={this.handleKey} placeholder='Username or Email' type='text' required ref={(user) => { this.user = user }} />
+            <input className='login__form-input' onKeyPress={this.handleKey} placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
             {/* <button className='login__button' onClick={this.handleLogin}> Entrar {this.elements.status ? console.log('Empresa') : console.log('Persona')} */}
             <button className='login__button' onClick={this.handleLogin}> Entrar {this.state.redirect ? <Redirect to='/trabajos' /> : undefined}
             </button>
