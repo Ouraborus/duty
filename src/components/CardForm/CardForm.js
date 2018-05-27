@@ -21,9 +21,10 @@ export default class CardForm extends Component {
       jobId: undefined,
       companyInput: '',
       jobInput: '',
-      dateInput: '',
       salaryInput: '',
-      descriptionInput: ''
+      descriptionInput: '',
+      startDateInput: '',
+      finishDateInput: ''
     }
   }
 

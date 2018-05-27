@@ -15,6 +15,10 @@ export default class SignUp extends Component {
     this.handleCheckbox = this.handleCheckbox.bind(this)
   }
 
+  componentDidMount () {
+    this.user.focus()
+  }
+
   handleSignUp () {
     let values = {}
     values.image = this.userImage.files[0]
