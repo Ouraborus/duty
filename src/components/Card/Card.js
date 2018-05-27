@@ -32,7 +32,7 @@ export default class Card extends Component {
     }
     return (
       <div className=' card-wide mdl-card mdl-shadow--2dp'>
-        <div className='card mdl-card__title'>
+        <div className='card mdl-card__title' style={{backgroundImage: `url(${this.props.data.image})`}}>
           <h2 className='card__text card__text--left'>{this.props.data.company}</h2>
           <p className='card__text card__text--right'>{this.props.data.job}</p>
           <p className='card__text card__text--right'>{this.props.data.startDate + ' - ' + this.props.data.finishDate}</p>

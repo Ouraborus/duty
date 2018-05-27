@@ -17,6 +17,7 @@ export default class SignUp extends Component {
 
   handleSignUp () {
     let values = {}
+    values.image = this.userImage.files[0]
     values.user = this.user.value
     values.pass = this.pass.value
     values.userName = this.userName.value
@@ -61,6 +62,7 @@ export default class SignUp extends Component {
           <section className='signup__form'>
             <input className='signup__form-input' placeholder='Email' type='text' required ref={(user) => { this.user = user }} />
             <input className='signup__form-input' placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
+            <input className='signup__form__explorer' name='myFile' type='file' accept='.jpg, .jpeg, .png' data-max-size='1048576' ref={(image) => { this.userImage = image }} />
             <input className='signup__form-input' placeholder='Nombres' type='text' required ref={(userName) => { this.userName = userName }} />
             <input className='signup__form-input' placeholder='Apellidos' type='text' required ref={(userLastName) => { this.userLastName = userLastName }} />
             <input className='signup__form-input' placeholder='Edad' type='number' required ref={(age) => { this.age = age }} />

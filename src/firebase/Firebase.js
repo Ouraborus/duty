@@ -36,12 +36,22 @@ export default class Firebase {
     })
   }
 
-  static createUser ({user, pass}) {
+  static createUser ({user, pass, image}) {
+    // Create a root reference
     firebase.auth().createUserWithEmailAndPassword(user, pass).catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code
       const errorMessage = error.message
       console.log(errorMessage, errorCode)
+    }).then(() => {
+      const userRef = firebase.auth().currentUser
+      const storageRef = firebase.storage().ref().child(userRef.uid + '/photo/' + image.name)
+      const uploadTask = storageRef.put(image)
+      uploadTask.then((snapshot) => {
+        userRef.updateProfile({
+          photoURL: snapshot.downloadURL
+        })
+      })
     })
   }
 
@@ -65,7 +75,6 @@ export default class Firebase {
 
   static addCompanyJob ({company, job, startDate, finishDate, salary, description}) {
     firebase.auth().onAuthStateChanged(function (user) {
-      console.log(user)
       if (user) {
         // User is signed in.
         firebase.database().ref('jobs/' + user.uid + '/' + Date.now() + user.uid.slice(0, 2) + '/').set({
@@ -74,7 +83,8 @@ export default class Firebase {
           startDate: startDate,
           finishDate: finishDate,
           salary: salary,
-          description: description
+          description: description,
+          image: user.photoURL
         })
       } else {
         // No user is signed in.
