@@ -1,4 +1,4 @@
-import Card from '../Card/Card'
+import UserCard from '../UserCard/UserCard'
 import React, { Component } from 'react'
 import Firebase from '../../firebase/Firebase'
 
@@ -26,7 +26,7 @@ export default class Dashboard extends Component {
       <div className='app-container'>
         <div className='grid'>
           { this.state.jobsId.map((job, i) => {
-            return <Card key={job} data={this.state.jobs[i]} />
+            return <UserCard key={job} data={this.state.jobs[i]} type={false} />
           }) }
         </div>
       </div>

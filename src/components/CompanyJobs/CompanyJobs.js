@@ -57,7 +57,7 @@ export default class CompanyJobs extends Component {
       <Fragment>
         <div className='app-container'>
           <div className='grid'>
-            {this.state.jobsId.map(job => <Card key={job} data={this.state.jobs[job]} deleteJobCallback={this.deleteJob} editJobCallback={this.activateCardForm} />)}
+            {this.state.jobsId.map(job => <Card key={job} data={this.state.jobs[job]} type deleteJobCallback={this.deleteJob} editJobCallback={this.activateCardForm} />)}
           </div>
           <CardForm createJobCallback={this.confirmJob} editJobCallback={this.editJob} getReferenceCallback={this.getReference} />
         </div>
