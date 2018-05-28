@@ -38,6 +38,7 @@ export default class CardForm extends Component {
   handleInputChange (event) {
     this.setState({[event.target.name]: event.target.value})
   }
+
   confirm () {
     return this.state.isAnUpdate ? this.updateCard() : this.createCard()
   }

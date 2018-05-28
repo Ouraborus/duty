@@ -121,10 +121,10 @@ export default class Firebase {
     })
   }
 
-  static getAllJobs () {
+  static getAllJobs (callback) {
     let allJobs = firebase.database().ref('jobs/')
     allJobs.on('value', function (snapshot) {
-      console.log(snapshot.val())
+      callback(snapshot.val())
     })
   }
 
