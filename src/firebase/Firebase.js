@@ -55,7 +55,7 @@ export default class Firebase {
     })
   }
 
-  static addUserData ({userName, userLastName, age = false, eps = false, company = false, nit = false}) {
+  static addUserData ({userName, userLastName, age = false, eps = false, company = false, nit = false}, firebaseGetStatus, signUpRef, context) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
@@ -66,9 +66,7 @@ export default class Firebase {
           eps: eps,
           company: company,
           nit: nit
-        })
-      } else {
-        // No user is signed in.
+        }).then(firebaseGetStatus(signUpRef, context))
       }
     })
   }

@@ -12,35 +12,19 @@ export default class Login extends Component {
     this.handleKey = this.handleKey.bind(this)
     this.elements = {}
     this.state = {
-      redirect: false
+      redirect: false,
+      path: null
     }
     this.firebase = Firebase
   }
 
-  /*
   approveLogin (value, context) {
     if (value === false) {
-      context.elements.status = value
+      context.setState({path: '/dashboard'})
     } else {
-      context.elements.status = true
+      context.setState({path: '/trabajos'})
     }
-    console.log(context.elements.status)
   }
-
-  handleLogin () {
-    if (this.user.value !== '' && this.pass.value !== '') {
-      this.firebase.loginUtils(this.user.value, this.pass.value)
-      const approved = this.firebase.checkUserStatus()
-      if (approved) {
-        this.firebase.getStatus(this.approveLogin, this)
-        this.setState(() => {
-          return { redirect: approved }
-        })
-      }
-    } else {
-      window.alert('llene los campos')
-    }
-  } */
 
   componentDidMount () {
     this.user.focus()
@@ -50,10 +34,15 @@ export default class Login extends Component {
     if (this.user.value !== '' && this.pass.value !== '') {
       this.firebase.loginUtils(this.user.value, this.pass.value).then(() => {
         const approved = this.firebase.checkUserStatus()
-        this.setState(() => {
-          return { redirect: approved }
-        })
+        if (approved) {
+          this.firebase.getStatus(this.approveLogin, this)
+          this.setState(() => {
+            return { redirect: approved }
+          })
+        }
       })
+    } else {
+      window.alert('Llene los campos')
     }
   }
 
@@ -64,6 +53,9 @@ export default class Login extends Component {
   }
 
   render () {
+    if (this.state.path !== null) {
+      return <Redirect to={this.state.path} />
+    }
     return (
       <Fragment>
         <div className='login'>
@@ -71,9 +63,7 @@ export default class Login extends Component {
           <section className='login__form'>
             <input className='login__form-input' onKeyPress={this.handleKey} placeholder='Username or Email' type='text' required ref={(user) => { this.user = user }} />
             <input className='login__form-input' onKeyPress={this.handleKey} placeholder='Password' type='password' required ref={(pass) => { this.pass = pass }} />
-            {/* <button className='login__button' onClick={this.handleLogin}> Entrar {this.elements.status ? console.log('Empresa') : console.log('Persona')} */}
-            <button className='login__button' onClick={this.handleLogin}> Entrar {this.state.redirect ? <Redirect to='/trabajos' /> : undefined}
-            </button>
+            <button className='login__button' onClick={this.handleLogin} > Entrar </button>
             <div>
               <Link to='/registrarse'>¿No estás registrado aún?</Link>
             </div>
@@ -83,4 +73,3 @@ export default class Login extends Component {
     )
   }
 }
-// <Redirect to='/trabajos' />

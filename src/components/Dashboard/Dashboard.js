@@ -10,6 +10,7 @@ export default class Dashboard extends Component {
   componentDidMount () {
     this.firebase.getAllJobs()
   }
+
   render () {
     return (
       <div className='app-container'>

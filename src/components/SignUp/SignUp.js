@@ -9,7 +9,8 @@ export default class SignUp extends Component {
     this.firebase = Firebase
     this.state = {
       approved: false,
-      isCompany: false
+      isCompany: false,
+      path: null
     }
     this.handleSignUp = this.handleSignUp.bind(this)
     this.handleCheckbox = this.handleCheckbox.bind(this)
@@ -39,16 +40,26 @@ export default class SignUp extends Component {
       window.alert('Faltan campos por llenar')
     } else {
       this.firebase.createUser(values)
-      this.firebase.addUserData(values)
+      this.firebase.addUserData(values, this.firebase.getStatus, this.approvedSignUp, this)
       this.setState((currentState) => {
         return { approved: !currentState.approved }
       })
     }
   }
+
+  approvedSignUp (value, context) {
+    if (value === false) {
+      context.setState({path: '/dashboard'})
+    } else {
+      context.setState({path: '/trabajos'})
+    }
+  }
+
   validateFields (values) {
     const flag = values.every(element => element !== '')
     return flag
   }
+
   handleCheckbox () {
     this.setState((currentState) => {
       return {isCompany: !currentState.isCompany}
@@ -58,6 +69,9 @@ export default class SignUp extends Component {
   render () {
     const states = {
       isCompany: this.state.isCompany ? '' : 'signup__form-company'
+    }
+    if (this.state.path !== null) {
+      return <Redirect to={this.state.path} />
     }
     return (
       <Fragment>
@@ -77,8 +91,7 @@ export default class SignUp extends Component {
             </div>
             <input className={`signup__form-input ${states.isCompany}`}placeholder='Empresa' type='text' ref={(company) => { this.company = company }} />
             <input className={`signup__form-input ${states.isCompany}`}placeholder='NIT' type='text' ref={(nit) => { this.nit = nit }} />
-            <button className='signup__form-button' onClick={this.handleSignUp}> Registrarse {this.state.approved ? <Redirect to='/trabajos' /> : '' }
-            </button>
+            <button className='signup__form-button' onClick={this.handleSignUp}> Registrarse </button>
           </section>
         </div>
       </Fragment>
