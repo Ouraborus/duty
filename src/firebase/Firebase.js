@@ -123,8 +123,14 @@ export default class Firebase {
 
   static getAllJobs (callback) {
     let allJobs = firebase.database().ref('jobs/')
-    allJobs.on('value', function (snapshot) {
-      callback(snapshot.val())
+    const jobs = []
+    let jobsId = []
+    allJobs.on('child_added', function (snapshot) {
+      jobsId.push(...Object.keys(snapshot.val()))
+      snapshot.forEach(function (snapchild) {
+        jobs.push(snapchild.val())
+      })
+      callback(jobsId, jobs)
     })
   }
 
